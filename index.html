@@ -21,7 +21,34 @@
       height:45px;
       border-radius:8px;
     }
-    .logo { font-weight:bold; font-size:20px; }
+    .logo-box {
+      position: relative;
+      border:2px solid #ffffff;
+      color:#ffffff;
+      padding:8px 18px;
+      border-radius:10px;
+      font-weight:bold;
+      font-size:20px;
+      letter-spacing:1px;
+      background: transparent;
+    }
+    .logo-box::after {
+      content: "★";
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 28px;
+      height: 28px;
+      background: #fff;
+      color: #b71c1c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
 
     /* Layout */
     .container { display:flex; padding:20px; gap:20px; }
@@ -87,7 +114,11 @@
 
   <!-- Header -->
   <div class="header">
-    <div class="logo">JR.21 MARBO V</div>
+    <div class="logo-box">JR.21 MARBO V.</div>
+    <div class="header-right">
+      <img src="LOGO.jpg" alt="logo">
+    </div>
+  </div>
     <div class="header-right">
       <img src="LOGO.jpg" alt="logo">
     </div>
@@ -101,7 +132,7 @@
       <input type="text" id="searchInput" placeholder="Search รายการที่ต้องการหา..." onkeyup="searchProduct()">
       <div class="menu" onclick="showMenu('menu1')">MARBO 9K</div>
       <div class="menu" onclick="showMenu('menu2')">น้ำหวาน ยาแก้ไอ</div>
-      <div class="menu" onclick="showMenu('menu3')">รอสินค้า STOK</div>
+      <div class="menu" onclick="showMenu('menu3')">รอสินค้า STOCK</div>
     </div>
 
     <!-- Products -->
@@ -175,4 +206,6 @@
     showMenu('menu1');
   </script>
 </body>
+</html>
+
 </html>
