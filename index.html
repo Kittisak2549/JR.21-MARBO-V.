@@ -150,6 +150,7 @@
             height: 200px;
             object-fit: cover;
             border-radius: 12px;
+            cursor: pointer;
         }
         .name { font-weight: bold; margin-top: 10px; }
         .price { color: #000; }
@@ -185,6 +186,28 @@
             .container { flex-direction: column; padding: 10px; }
             .sidebar { width: 160px; padding: 10px; }
             .thank-you { font-size: 15px; padding: 14px 16px; }
+        }
+    
+        /* ===== Image Preview Modal ===== */
+        .image-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+            animation: zoomIn 0.25s ease-out;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
@@ -232,7 +255,7 @@
             <div class="card" data-menu="menu1"><img src="20.webp"><div class="name">GRAPE LYCHEE</div><div class="stock out">(สินค้าหมด)</div><div class="price">420 THB</div></div>
 
             <!-- ===== Menu 2 : มีสินค้า 2 ชิ้น ===== -->
-            <div class="card" data-menu="menu2"><img src="00.jpg"><div class="name">ALLERGIN {5ดาว} B.KMH</div><div class="stock">(เหลือ 1 ชิ้น)</div><div class="price">90 THB</div></div>
+            <div class="card" data-menu="menu2"><img src="00.jpg"><div class="name">ALLERGIN {5ดาว} B.KMH</div><div class="stock out">(สินค้าหมด)</div><div class="price">90 THB</div></div>
             <div class="card" data-menu="menu2"><img src="00.jpg"><div class="name">ALLERGIN {5ดาว} B.DK</div><div class="stock">(เหลือ 6 ชิ้น)</div><div class="price">90 THB</div></div>
             <div class="card" data-menu="menu2"><img src="0.jpg"><div class="name">SIX NINE {69} B.KMH</div><div class="stock out">(สินค้าหมด)</div><div class="price">70 THB</div></div>
             <div class="card" data-menu="menu2"><img src="0.jpg"><div class="name">SIX NINE {69} B.DK</div><div class="stock out">(สินค้าหมด)</div><div class="price">70 THB</div></div>
@@ -246,7 +269,12 @@
 
         </div>
 
-        <!-- ===== Thank You Message (Fixed Bottom) ===== -->
+<!-- ===== Image Modal ===== -->
+<div class="image-modal" id="imageModal" onclick="closeImage()">
+    <img id="modalImg" src="" alt="preview">
+</div>
+
+<!-- ===== Thank You Message (Fixed Bottom) ===== -->
     <div class="thank-you">🙏 ขอบคุณที่สนับสนุนร้าน JR.21 MARBO V. เสมอมา 🙏</div>
 </div>
 
@@ -282,6 +310,20 @@
     document.getElementById('updateDate').textContent = today.toLocaleDateString('th-TH', options);
 
     showMenu('menu1');
+
+    // ===== Image Preview Logic =====
+    document.querySelectorAll('.card img').forEach(img => {
+        img.addEventListener('click', () => {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = img.src;
+            modal.style.display = 'flex';
+        });
+    });
+
+    function closeImage() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
 </script>
 </body>
 </html>
