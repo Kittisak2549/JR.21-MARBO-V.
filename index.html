@@ -428,23 +428,8 @@
 
 </div>
 
-<script type="module">
-// ===== Firebase SDK =====
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA2Idm4BvtBbbTzIPk88_GR4wZ9Toiqfso",
-  authDomain: "jr21-marbo-v-chat.firebaseapp.com",
-  projectId: "jr21-marbo-v-chat",
-  storageBucket: "jr21-marbo-v-chat.firebasestorage.app",
-  messagingSenderId: "106898632614",
-  appId: "1:106898632614:web:b611d50e85fd1e8d102967",
-  measurementId: "G-D8KEBGG772"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+<script>
+// ===== No Firebase / Fake Chat Only =====
 
     let currentMenu = 'menu1';
 
@@ -509,9 +494,9 @@ const db = getFirestore(app);
     };
 
     window.sendChat = function sendChat() {
-        // ===== Save to Firestore (Real Chat) =====
-        const input = document.getElementById('chatInput');
+        
         const body = document.getElementById('chatBody');
+        const input = document.getElementById('chatInput');
         const text = input.value.trim();
         if (!text) return;
 
@@ -520,12 +505,7 @@ const db = getFirestore(app);
         userMsg.textContent = text;
         body.appendChild(userMsg);
 
-        // save message to Firestore
-        addDoc(collection(db, "chats"), {
-            message: text,
-            sender: "user",
-            createdAt: serverTimestamp()
-        });
+        
         input.value = '';
 
         body.scrollTop = body.scrollHeight;
@@ -576,4 +556,3 @@ const db = getFirestore(app);
 </script>
 </body>
 </html>
-
