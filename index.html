@@ -309,7 +309,13 @@
                 const name = card.querySelector('.name').textContent.toLowerCase();
                 card.style.display = (card.dataset.menu === currentMenu && name.includes(text)) ? 'block' : 'none';
             });
-        }
+       }
+
+        // แสดงวันที่อัปเดตล่าสุด
+        const today = new Date();
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        document.getElementById('updateDate').textContent = today.toLocaleDateString('th-TH', options);
+
 
         showMenu('menu1');
     </script>
